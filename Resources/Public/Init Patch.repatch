@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<JukeboxPatch version="1.0" >
+    <DeviceNameInEnglish>
+        Launchnik Rec'n'Run Player
+    </DeviceNameInEnglish>
+    <Properties deviceProductID="rocks.zapperment.LaunchnikRecNRun"  deviceVersion="1.0.0d1" >
+        <Object name="custom_properties" >
+        </Object>
+    </Properties>
+</JukeboxPatch>
