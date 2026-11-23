@@ -1,5 +1,25 @@
 format_version = "2.0"
 
+-- The values a click area needs to keep what has been recorded, after its
+-- own (see display.lua): unkept, the realtime strings showing the patterns,
+-- the kept patterns.
+local function with_keep_values(own)
+	local values = {}
+	for _, value in ipairs(own) do
+		table.insert(values, value)
+	end
+	table.insert(values, "/custom_properties/unkept")
+	for pattern = 1, 8 do
+		for part = 1, 5 do
+			table.insert(values, "/custom_properties/pattern_" .. pattern .. "_part_" .. part)
+		end
+	end
+	for pattern = 1, 8 do
+		table.insert(values, "/custom_properties/pattern_" .. pattern)
+	end
+	return values
+end
+
 -- Lights first, the click areas afterwards: later widgets are on top.
 local front_widgets = {
 	jbox.device_name{
@@ -30,7 +50,7 @@ local front_widgets = {
 		display_height_pixels = 215,
 		draw_function = "Transparent_Draw",
 		gesture_function = "RecButton_Gesture",
-		values = { "/custom_properties/rec", "/custom_properties/on", "/environment/player_bypassed" },
+		values = with_keep_values({ "/custom_properties/rec", "/custom_properties/on", "/environment/player_bypassed" }),
 	},
 	jbox.sequence_meter{
 		graphics = { node = "RunLight" },
@@ -43,7 +63,7 @@ local front_widgets = {
 		display_height_pixels = 215,
 		draw_function = "Transparent_Draw",
 		gesture_function = "RunButton_Gesture",
-		values = { "/custom_properties/run", "/custom_properties/on", "/environment/player_bypassed" },
+		values = with_keep_values({ "/custom_properties/run", "/custom_properties/on", "/environment/player_bypassed" }),
 	},
 	jbox.sequence_meter{
 		graphics = { node = "PatternLights" },
@@ -59,7 +79,7 @@ for pattern = 1, 8 do
 		display_height_pixels = 180,
 		draw_function = "Transparent_Draw",
 		gesture_function = "PatternButton" .. pattern .. "_Gesture",
-		values = { "/transport/pattern_index" },
+		values = with_keep_values({ "/transport/pattern_index" }),
 	})
 end
 

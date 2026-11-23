@@ -12,18 +12,25 @@ global_rtc = {
 	end,
 }
 
+local notify = {
+	"/note_states/*",
+	"/transport/pattern_index",
+	"/transport/playing",
+	"/transport/request_run",
+	"/transport/request_stop",
+	"/environment/player_bypassed",
+	"/custom_properties/on",
+	"/custom_properties/run",
+	"/custom_properties/rec",
+}
+
+-- The kept patterns: a change is a keep, an undo or a patch being loaded.
+for pattern = 1, 8 do
+	table.insert(notify, "/custom_properties/pattern_" .. pattern)
+end
+
 rt_input_setup = {
-	notify = {
-		"/note_states/*",
-		"/transport/pattern_index",
-		"/transport/playing",
-		"/transport/request_run",
-		"/transport/request_stop",
-		"/environment/player_bypassed",
-		"/custom_properties/on",
-		"/custom_properties/run",
-		"/custom_properties/rec",
-	},
+	notify = notify,
 }
 
 sample_rate_setup = {
