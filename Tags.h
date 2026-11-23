@@ -9,6 +9,9 @@ const TJBox_Tag kRecTag = 3;
 const TJBox_Tag kPatternLightFrameTag = 10;
 const TJBox_Tag kRunLightFrameTag = 11;
 const TJBox_Tag kRecLightFrameTag = 12;
+const TJBox_Tag kUnkeptTag = 13;
+// Kept pattern n (0 to 7) has tag kFirstKeptPatternTag + n.
+const TJBox_Tag kFirstKeptPatternTag = 21;
 
 // Frames of the RUN and REC buttons' film strips.
 const int kButtonFrameUnlit = 0;
